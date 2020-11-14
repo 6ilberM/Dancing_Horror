@@ -31,6 +31,21 @@ public class DanceSequence {
     public DanceType move7 = DanceType.NONE;
     public DanceType move8 = DanceType.NONE;
     public DanceType move9 = DanceType.NONE;
+
+    public DanceType GetMoveFromIndex(int index) {
+        switch (index) {
+            case 1: return move1;
+            case 2: return move2;
+            case 3: return move3;
+            case 4: return move4;
+            case 5: return move5;
+            case 6: return move6;
+            case 7: return move7;
+            case 8: return move8;
+            case 9: return move9;
+            default: return DanceType.NONE;
+        }
+    }
 }
 
 public static class DanceSequencePresets {
