@@ -207,113 +207,141 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 6.4666667
+    functionName: SetupDanceSequence
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 6.6
-    functionName: HitUpMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 8.266666
-    functionName: HitPoseMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 9.933333
-    functionName: HitLeftMove
+    functionName: HitNextDanceMoveInSequence
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 13.15
+    functionName: SetupDanceSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 13.266666
-    functionName: HitDownMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 13.683333
-    functionName: HitUpMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 14.1
-    functionName: HitDownMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 14.516666
-    functionName: HitUpMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 14.933333
-    functionName: HitTwistMove
+    functionName: HitNextDanceMoveInSequence
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 15.35
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 15.766666
-    functionName: HitUpMove
+    functionName: HitNextDanceMoveInSequence
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 16.183332
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 16.6
-    functionName: HitRightMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 19.933332
-    functionName: HitLeftMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 20.35
-    functionName: HitRightMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 20.766666
-    functionName: HitLeftMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 21.183332
-    functionName: HitRightMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 21.6
-    functionName: HitPoseMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 23.266666
-    functionName: HitRightMove
+    functionName: HitNextDanceMoveInSequence
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -367,7 +395,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -3537337344202194209}
-    m_Duration: 126
+    m_Duration: 66
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6388553032930271179}
     m_EaseInDuration: 0
