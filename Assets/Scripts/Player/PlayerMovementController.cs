@@ -38,7 +38,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
         m_controls = new Main_Input();
 
         m_controls.Player.Fire.started += OnClickStarted;
@@ -68,7 +67,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnEnable() { m_controls.Enable(); }
 
-    void Start() { Cursor.lockState = CursorLockMode.Locked; }
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Update()
     {
