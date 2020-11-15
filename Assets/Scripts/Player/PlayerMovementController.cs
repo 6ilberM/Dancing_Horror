@@ -30,11 +30,18 @@ public class PlayerMovementController : MonoBehaviour
     [Space(10)]
     public bool isGrounded = false;
     public bool isLeftButtonPressed = false;
-    private float xRotation = 0f;
+    private bool isObjectOverlapped = false;
+    private Transform collectibleObj;
 
     [Header("Unlockables")]
     [Space(6.5f)]
     public bool isTorchUnlocked = false;
+    public bool isKeyGrabbed = false;
+    public bool isHammerGrabbed = false;
+    public bool isLampGrabbed = false;
+    public bool isDiscoBallGrabbed = false;
+    public bool isBloodyDressGrabbed = false;
+    public bool isHatGrabbed = false;
 
     //Event
     public Action<bool> onCollectibleOverlap;
@@ -45,6 +52,46 @@ public class PlayerMovementController : MonoBehaviour
 
         m_controls.Player.Fire.started += OnClickStarted;
         m_controls.Player.Fire.performed += OnClickPerformed;
+
+        m_controls.Player.Grab.performed += Grab_performed;
+    }
+
+    private void Grab_performed(InputAction.CallbackContext ctx)
+    {
+        if (isObjectOverlapped && collectibleObj)
+        {
+            //We're just going to compare it with the name of the Collectible for simplicity and avoiding extra systems
+            if (collectibleObj.gameObject.name == "Key")
+            {
+                this.isKeyGrabbed = true;
+            }
+            else if (collectibleObj.gameObject.name == "Hammer")
+            {
+                this.isHammerGrabbed = true;
+            }
+            else if (collectibleObj.gameObject.name == "Lamp")
+            {
+                this.isLampGrabbed = true;
+            }
+            else if (collectibleObj.gameObject.name == "DiscoBall")
+            {
+                this.isDiscoBallGrabbed = true;
+            }
+            else if (collectibleObj.gameObject.name == "Bloody Dress")
+            {
+                this.isBloodyDressGrabbed = true;
+            }
+            else if (collectibleObj.gameObject.name == "Hat")
+            {
+                this.isHatGrabbed = true;
+            }
+
+            Destroy(collectibleObj.gameObject, Time.deltaTime);
+
+            onCollectibleOverlap?.Invoke(false);
+            collectibleObj = null;
+            isObjectOverlapped = false;
+        }
     }
 
     private void OnClickStarted(InputAction.CallbackContext obj)
@@ -104,12 +151,22 @@ public class PlayerMovementController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Collectible"))
+        {
             onCollectibleOverlap?.Invoke(true);
+
+            isObjectOverlapped = true;
+            collectibleObj = other.transform;
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Collectible"))
+        {
             onCollectibleOverlap?.Invoke(false);
+            collectibleObj = null;
+            isObjectOverlapped = false;
+        }
     }
 
     private void OnDisable() { m_controls.Disable(); }

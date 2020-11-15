@@ -26,17 +26,17 @@ public class PickupAvailableListener : MonoBehaviour
     {
         if (isOverlapping)
         {
-            StartCoroutine(TextAppear());
+            StartCoroutine(DisplayText());
         }
         else
         {
-            StopCoroutine(TextAppear());
+            StopCoroutine(DisplayText());
             textMesh.maxVisibleCharacters = 0;
         }
 
     }
 
-    IEnumerator TextAppear()
+    IEnumerator DisplayText()
     {
         while (textMesh.maxVisibleCharacters <= textMesh.text.Length)
         {
