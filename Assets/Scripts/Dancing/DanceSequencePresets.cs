@@ -70,10 +70,14 @@ public static class DanceSequencePresets {
             move1 = DanceType.UP,
             move5 = DanceType.DOWN,
         },
-        //new DanceSequence {
-        //    move1 = DanceType.LEFT,
-        //    move5 = DanceType.RIGHT,
-        //},
+        new DanceSequence {
+            move1 = DanceType.LEFT,
+            move5 = DanceType.RIGHT,
+        },
+        new DanceSequence {
+            move1 = DanceType.TWIST,
+            move5 = DanceType.POSE,
+        },
     };
 
     private static DanceSequence[] mediumDanceSequences = new DanceSequence[] {
@@ -82,6 +86,18 @@ public static class DanceSequencePresets {
             move3 = DanceType.DOWN,
             move5 = DanceType.UP,
             move7 = DanceType.TWIST,
+        },
+        new DanceSequence {
+            move1 = DanceType.POSE,
+            move3 = DanceType.TWIST,
+            move4 = DanceType.LEFT,
+            move6 = DanceType.RIGHT,
+        },
+        new DanceSequence {
+            move1 = DanceType.TWIST,
+            move3 = DanceType.UP,
+            move4 = DanceType.RIGHT,
+            move6 = DanceType.DOWN,
         },
     };
 
@@ -101,10 +117,33 @@ public static class DanceSequencePresets {
             move3 = DanceType.UP,
             move4 = DanceType.DOWN,
             move5 = DanceType.UP,
-            move6 = DanceType.NONE,
+            move7 = DanceType.TWIST,
+            move9 = DanceType.POSE,
+        },
+        new DanceSequence {
+            move1 = DanceType.POSE,
+            move3 = DanceType.RIGHT,
+            move4 = DanceType.UP,
+            move5 = DanceType.TWIST,
             move7 = DanceType.DOWN,
-            move8 = DanceType.NONE,
+            move8 = DanceType.UP,
             move9 = DanceType.RIGHT,
+        },
+        new DanceSequence {
+            move1 = DanceType.UP,
+            move3 = DanceType.LEFT,
+            move4 = DanceType.DOWN,
+            move6 = DanceType.LEFT,
+            move7 = DanceType.UP,
+            move9 = DanceType.RIGHT,
+        },
+        new DanceSequence {
+            move1 = DanceType.DOWN,
+            move2 = DanceType.UP,
+            move3 = DanceType.RIGHT,
+            move5 = DanceType.RIGHT,
+            move7 = DanceType.DOWN,
+            move9 = DanceType.LEFT,
         },
     };
 

@@ -14,7 +14,7 @@ public class DanceSequenceController : MonoBehaviour {
     private int maxMissCount = 5;
     private int totalMissCount = 0;
 
-    private int difficultyCounter = 3;
+    private int difficultyCounter = 1;
 
     public void PlayIntro() {
         if (!playedIntro) {
@@ -83,6 +83,27 @@ public class DanceSequenceController : MonoBehaviour {
         player.DisplayNextRedCharacterInDanceKeyGroup();
     }
 
+    public void PreMonsterSetup() {
+        ClearDanceKeyGroup();
+        MonsterSetupDanceSequence();
+        PlayerSetupKeySequence();
+    }
+
+    public void PrePlayerSetup() {
+        PlayerSetupKeySequence();
+        PlayerStartInputSequence();
+        MonsterResetDanceSequence();
+    }
+
+    public void PostPlayerSetup() {
+        ClearDanceKeyGroup();
+        PlayerStopInputSequence();
+    }
+
+    public void GoToRoom() {
+        SceneManager.LoadScene("First_floor");
+    }
+
     public void PlayerStartInputSequence() => player.StartInputtingSequence();
 
     public void PlayerStopInputSequence() => player.StopInputtingSequence();
@@ -96,11 +117,9 @@ public class DanceSequenceController : MonoBehaviour {
         }
 
         if (!player.HasHitMove(realMoveDanceSequenceIndex++)) {
+            monster.Growl();
             if (++totalMissCount > maxMissCount) {
-                // Start Death Scene
                 SceneManager.LoadScene("DeathScene");
-            } else {
-                monster.Growl();
             }
             return;
         }
