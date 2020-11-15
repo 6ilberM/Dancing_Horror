@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.047058824, g: 0.047058824, b: 0.047058824, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -3079,6 +3079,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5306513001572066408, guid: 0753c64b69751524eb8450e937046a55,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306513001572066408, guid: 0753c64b69751524eb8450e937046a55,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e5438adce93bcc498dc6e776dd8a355, type: 2}
+    - target: {fileID: 7205021657281321643, guid: 0753c64b69751524eb8450e937046a55,
+        type: 3}
+      propertyPath: m_Name
+      value: MonsterSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331025892966031506, guid: 0753c64b69751524eb8450e937046a55,
+        type: 3}
+      propertyPath: playerMovementController
+      value: 
+      objectReference: {fileID: 199908026}
     - target: {fileID: 8331025892966031509, guid: 0753c64b69751524eb8450e937046a55,
         type: 3}
       propertyPath: m_Name
