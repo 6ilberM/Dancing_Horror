@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterAgentController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private NavMeshAgent meshAgent;
+    [SerializeField] private bool seenPlayer = false;
+
+    private void Awake()
     {
 
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        meshAgent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+    }
+
     void Update()
     {
 
     }
+
+    private void OnValidate()
+    {
+        if (meshAgent == null) { meshAgent = GetComponent<NavMeshAgent>(); }
+    }
+
 }

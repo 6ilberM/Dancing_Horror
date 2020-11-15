@@ -82,26 +82,7 @@ public class PlayerMovementController : MonoBehaviour
         var moveDirection = m_controls.Player.Move.ReadValue<Vector2>() * speed;
 
         MoveMethod(moveDirection);
-
-        //if (look.sqrMagnitude < 0.01)
-        //    return;
-
-        //LookMethod(look);
     }
-
-    //private void LookMethod(Vector2 look)
-    //{
-    //    xRotation -= look.y * rotateSpeed * Time.deltaTime;
-    //    xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-    //    var scaledRotateSpeed = look * rotateSpeed * Time.deltaTime;
-
-    //    transform.Rotate(Vector3.up * scaledRotateSpeed.x);
-
-    //    //cachedPlayerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-    //    cachedPlayerCamera.transform.localRotation = Quaternion.Slerp(cachedPlayerCamera.transform.localRotation, Quaternion.Euler(xRotation, 0, 0),
-    //        Time.deltaTime * 9.5f);
-    //}
 
     private void MoveMethod(Vector2 moveDirection)
     {
@@ -109,6 +90,12 @@ public class PlayerMovementController : MonoBehaviour
             + (transform.forward * moveDirection.y + transform.right * moveDirection.x) * Time.deltaTime;
 
         characterController.Move(desiredVelocity);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var rb = hit.collider.gameObject.GetComponent<Rigidbody>();
+        rb.AddForce((transform.position - hit.collider.transform.position).normalized * 25);
     }
 
     private void OnDisable() { m_controls.Disable(); }
