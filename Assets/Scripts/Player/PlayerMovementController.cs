@@ -38,7 +38,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
         m_controls = new Main_Input();
 
         m_controls.Player.Fire.started += OnClickStarted;
@@ -68,43 +67,35 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnEnable() { m_controls.Enable(); }
 
-    void Start() { Cursor.lockState = CursorLockMode.Locked; }
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, 0.2f, groundLayerMask);
 
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, cachedPlayerCamera.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
         var moveDirection = m_controls.Player.Move.ReadValue<Vector2>() * speed;
-        //var look = m_controls.Player.Look.ReadValue<Vector2>();
 
         MoveMethod(moveDirection);
-
-        //if (look.sqrMagnitude < 0.01)
-        //    return;
-
-        //LookMethod(look);
     }
-
-    //private void LookMethod(Vector2 look)
-    //{
-    //    xRotation -= look.y * rotateSpeed * Time.deltaTime;
-    //    xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-    //    var scaledRotateSpeed = look * rotateSpeed * Time.deltaTime;
-
-    //    transform.Rotate(Vector3.up * scaledRotateSpeed.x);
-
-    //    //cachedPlayerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-    //    cachedPlayerCamera.transform.localRotation = Quaternion.Slerp(cachedPlayerCamera.transform.localRotation, Quaternion.Euler(xRotation, 0, 0),
-    //        Time.deltaTime * 9.5f);
-    //}
 
     private void MoveMethod(Vector2 moveDirection)
     {
         var desiredVelocity = (!isGrounded ? desiredGravity * Time.deltaTime : characterController.velocity.y < 0 ? Vector3.down * 2 : Vector3.zero)
-            + (cachedPlayerCamera.transform.forward * moveDirection.y + cachedPlayerCamera.transform.right * moveDirection.x) * Time.deltaTime;
+            + (transform.forward * moveDirection.y + transform.right * moveDirection.x) * Time.deltaTime;
 
         characterController.Move(desiredVelocity);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var rb = hit.collider.gameObject.GetComponent<Rigidbody>();
+        rb.AddForce((transform.position - hit.collider.transform.position).normalized * 25);
     }
 
     private void OnDisable() { m_controls.Disable(); }
