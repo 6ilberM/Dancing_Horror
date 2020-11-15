@@ -77,8 +77,9 @@ public class PlayerMovementController : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, 0.2f, groundLayerMask);
 
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, cachedPlayerCamera.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
         var moveDirection = m_controls.Player.Move.ReadValue<Vector2>() * speed;
-        //var look = m_controls.Player.Look.ReadValue<Vector2>();
 
         MoveMethod(moveDirection);
 
@@ -105,7 +106,7 @@ public class PlayerMovementController : MonoBehaviour
     private void MoveMethod(Vector2 moveDirection)
     {
         var desiredVelocity = (!isGrounded ? desiredGravity * Time.deltaTime : characterController.velocity.y < 0 ? Vector3.down * 2 : Vector3.zero)
-            + (cachedPlayerCamera.transform.forward * moveDirection.y + cachedPlayerCamera.transform.right * moveDirection.x) * Time.deltaTime;
+            + (transform.forward * moveDirection.y + transform.right * moveDirection.x) * Time.deltaTime;
 
         characterController.Move(desiredVelocity);
     }
