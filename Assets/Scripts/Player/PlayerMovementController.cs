@@ -38,6 +38,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
         m_controls = new Main_Input();
 
         m_controls.Player.Fire.started += OnClickStarted;
@@ -74,34 +75,34 @@ public class PlayerMovementController : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, 0.2f, groundLayerMask);
 
         var moveDirection = m_controls.Player.Move.ReadValue<Vector2>() * speed;
-        var look = m_controls.Player.Look.ReadValue<Vector2>();
+        //var look = m_controls.Player.Look.ReadValue<Vector2>();
 
         MoveMethod(moveDirection);
 
-        if (look.sqrMagnitude < 0.01)
-            return;
+        //if (look.sqrMagnitude < 0.01)
+        //    return;
 
-        LookMethod(look);
+        //LookMethod(look);
     }
 
-    private void LookMethod(Vector2 look)
-    {
-        xRotation -= look.y * rotateSpeed * Time.deltaTime;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+    //private void LookMethod(Vector2 look)
+    //{
+    //    xRotation -= look.y * rotateSpeed * Time.deltaTime;
+    //    xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        var scaledRotateSpeed = look * rotateSpeed * Time.deltaTime;
+    //    var scaledRotateSpeed = look * rotateSpeed * Time.deltaTime;
 
-        transform.Rotate(Vector3.up * scaledRotateSpeed.x);
+    //    transform.Rotate(Vector3.up * scaledRotateSpeed.x);
 
-        //cachedPlayerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        cachedPlayerCamera.transform.localRotation = Quaternion.Slerp(cachedPlayerCamera.transform.localRotation, Quaternion.Euler(xRotation, 0, 0),
-            Time.deltaTime * 9.5f);
-    }
+    //    //cachedPlayerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+    //    cachedPlayerCamera.transform.localRotation = Quaternion.Slerp(cachedPlayerCamera.transform.localRotation, Quaternion.Euler(xRotation, 0, 0),
+    //        Time.deltaTime * 9.5f);
+    //}
 
     private void MoveMethod(Vector2 moveDirection)
     {
         var desiredVelocity = (!isGrounded ? desiredGravity * Time.deltaTime : characterController.velocity.y < 0 ? Vector3.down * 2 : Vector3.zero)
-            + (transform.forward * moveDirection.y + transform.right * moveDirection.x) * Time.deltaTime;
+            + (cachedPlayerCamera.transform.forward * moveDirection.y + cachedPlayerCamera.transform.right * moveDirection.x) * Time.deltaTime;
 
         characterController.Move(desiredVelocity);
     }

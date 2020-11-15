@@ -496,6 +496,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &199908026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8485548315219247580, guid: 627066636142e0a43a137b158f01a15b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8485548314393840281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058f071f4f966aa42b0d0bb2de858bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &242664063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8485548314289948902, guid: 627066636142e0a43a137b158f01a15b,
@@ -1013,6 +1025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1157192677}
   - component: {fileID: 1157192678}
+  - component: {fileID: 1157192679}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -1070,6 +1083,22 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2088429996}
+--- !u!114 &1157192679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157192676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1db29f38497b634e870eace1b2590a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clampAngle: 80
+  horizontalSpeed: 10
+  verticalSpeed: 10
+  player: {fileID: 199908026}
 --- !u!1 &1175129344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2214,7 @@ GameObject:
   - component: {fileID: 2088429999}
   - component: {fileID: 2019612543658139759}
   - component: {fileID: 2088429997}
+  - component: {fileID: 2088429998}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -2264,6 +2294,22 @@ MonoBehaviour:
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
+--- !u!114 &2088429998
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088429995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2088429999
 MonoBehaviour:
   m_ObjectHideFlags: 3
