@@ -40,7 +40,7 @@ public class @Main_Input : IInputActionCollection, IDisposable
                     ""id"": ""cf2550aa-9820-4161-9cc4-d1c7a1c44f46"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""SlowTap(duration=0.0001)""
                 }
             ],
             ""bindings"": [
