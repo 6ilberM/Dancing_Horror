@@ -5,12 +5,16 @@ using UnityEngine.AI;
 
 public class MonsterAgentController : MonoBehaviour
 {
+
+    private const float f_graceTime = 45f;
+
     [SerializeField] private NavMeshAgent meshAgent;
     [SerializeField] private bool seenPlayer = false;
     [SerializeField] private SpriteRenderer monsterSprite;
     [SerializeField] private PlayerMovementController playerMovementController;
 
     [SerializeField] private Camera m_Camera;
+    float graceTimer = 0;
 
     private void Awake() { m_Camera = Camera.main; }
 
@@ -20,8 +24,26 @@ public class MonsterAgentController : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (graceTimer >= 0)
+        {
+            graceTimer -= Time.deltaTime;
+        }
+
+    }
+
+    //ToDo: This function should be called after each game Fight
+    public void OnDanceFightCompletedAndWon()
+    {
+        graceTimer = f_graceTime;
+        StopAllCoroutines();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (graceTimer >= 0) { return; }
+
         if (other.gameObject.CompareTag("Player"))
         {
             seenPlayer = true;
@@ -31,6 +53,8 @@ public class MonsterAgentController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (graceTimer >= 0) { return; }
+
         if (other.gameObject.CompareTag("Player")) { seenPlayer = false; }
         StartCoroutine(GoToRandomPosition());
     }
