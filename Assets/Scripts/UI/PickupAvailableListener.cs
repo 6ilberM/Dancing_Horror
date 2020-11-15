@@ -20,14 +20,10 @@ public class PickupAvailableListener : MonoBehaviour
         if (playerMovementController) { playerMovementController.onCollectibleOverlap += OnCollectibleOverlap; }
     }
 
-    private void Start()
-    {
-        textMesh.maxVisibleCharacters = 0;
-    }
+    private void Start() { textMesh.maxVisibleCharacters = 0; }
 
     private void OnCollectibleOverlap(bool isOverlapping)
     {
-        //textMesh.enabled = isOverlapping;
         if (isOverlapping)
         {
             StartCoroutine(TextAppear());
@@ -37,16 +33,16 @@ public class PickupAvailableListener : MonoBehaviour
             StopCoroutine(TextAppear());
             textMesh.maxVisibleCharacters = 0;
         }
+
     }
 
     IEnumerator TextAppear()
     {
-
         while (textMesh.maxVisibleCharacters <= textMesh.text.Length)
         {
             textMesh.maxVisibleCharacters++;
 
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.045f);
         }
     }
 

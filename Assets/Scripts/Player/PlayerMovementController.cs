@@ -101,7 +101,7 @@ public class PlayerMovementController : MonoBehaviour
         if (rb) { rb.AddForce((transform.position - hit.collider.transform.position).normalized * 25); }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Collectible"))
             onCollectibleOverlap?.Invoke(true);
