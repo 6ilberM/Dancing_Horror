@@ -11,9 +11,10 @@ public class TintOnMouseOver : MonoBehaviour,
     [SerializeField] private Color originalColor = Color.red;
     [SerializeField] private Color tintColor = Color.white;
     [SerializeField] private TextMeshProUGUI text = null;
+    [SerializeField] private string sceneToMoveTo = "First_floor";
 
     public void OnPointerClick(PointerEventData eventData) {
-        SceneManager.LoadScene("DanceScene");
+        SceneManager.LoadScene(sceneToMoveTo);
     }
 
     public void OnPointerEnter(PointerEventData eventData) {

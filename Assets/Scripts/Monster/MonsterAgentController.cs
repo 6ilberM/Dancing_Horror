@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class MonsterAgentController : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class MonsterAgentController : MonoBehaviour
             graceTimer -= Time.deltaTime;
         }
 
+        if ((playerMovementController.transform.position - transform.position).magnitude < 3) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene("DanceScene");
+        }
     }
 
     //ToDo: This function should be called after each game Fight
@@ -44,8 +50,10 @@ public class MonsterAgentController : MonoBehaviour
     {
         if (graceTimer >= 0) { return; }
 
-        if (other.gameObject.CompareTag("Player"))
-        {
+        if (other.gameObject.CompareTag("Player")) {
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //SceneManager.LoadScene("DanceScene");
             seenPlayer = true;
             StartCoroutine(LetsFollowBack());
         }
