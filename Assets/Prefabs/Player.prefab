@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 8485548315219247569}
   - component: {fileID: 8485548315219247581}
   - component: {fileID: 8485548315219247580}
+  - component: {fileID: 401795357}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -209,7 +210,7 @@ MonoBehaviour:
   groundCheck: {fileID: 5031553407831430210}
   m_animator: {fileID: 0}
   torchPointLight: {fileID: 0}
-  speed: 12
+  speed: 6.666
   rotateSpeed: 4
   desiredGravity: {x: 0, y: -9.81, z: 0}
   groundLayerMask:
@@ -218,3 +219,22 @@ MonoBehaviour:
   isGrounded: 0
   isLeftButtonPressed: 0
   isTorchUnlocked: 1
+  isKeyGrabbed: 0
+  isHammerGrabbed: 0
+  isLampGrabbed: 0
+  isDiscoBallGrabbed: 0
+  isBloodyDressGrabbed: 0
+  isHatGrabbed: 0
+--- !u!65 &401795357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485548315219247578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2724857, y: 2.3844981, z: 1.0912094}
+  m_Center: {x: -0.0018897057, y: -0.00024104118, z: 0.010677338}
