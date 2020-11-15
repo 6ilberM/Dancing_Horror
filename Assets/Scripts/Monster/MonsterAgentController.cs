@@ -15,14 +15,18 @@ public class MonsterAgentController : MonoBehaviour
 
     void Start()
     {
-        meshAgent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+        StartCoroutine(LetsFollowBack());
     }
 
-    void Update()
+    private IEnumerator LetsFollowBack()
     {
+        while (true)
+        {
+            meshAgent.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
 
+            yield return new WaitForSeconds(1);
+        }
     }
-
     private void OnValidate()
     {
         if (meshAgent == null) { meshAgent = GetComponent<NavMeshAgent>(); }
