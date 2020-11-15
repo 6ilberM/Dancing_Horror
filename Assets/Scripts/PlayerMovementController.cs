@@ -12,6 +12,7 @@ public class PlayerMovementController : MonoBehaviour
     public Camera cachedPlayerCamera = null;
     [SerializeField] Transform groundCheck;
     [SerializeField] Animator m_animator = null;
+    [SerializeField] Light torchPointLight = null;
 
     [Space(5)]
     [HideInInspector] public Main_Input m_controls = null;
@@ -48,6 +49,7 @@ public class PlayerMovementController : MonoBehaviour
         if (!isTorchUnlocked) { return; }
 
         isLeftButtonPressed = true;
+        torchPointLight.enabled = true;
         m_animator.SetBool("IsButtonHeld", isLeftButtonPressed);
     }
 
@@ -56,6 +58,8 @@ public class PlayerMovementController : MonoBehaviour
         if (ctx.interaction is SlowTapInteraction)
         {
             isLeftButtonPressed = false;
+            torchPointLight.enabled = false;
+
             m_animator.SetBool("IsButtonHeld", isLeftButtonPressed);
         }
 
@@ -67,7 +71,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.transform.position, .2f, groundLayerMask);
+        isGrounded = Physics.CheckSphere(groundCheck.transform.position, 0.2f, groundLayerMask);
+
         var moveDirection = m_controls.Player.Move.ReadValue<Vector2>() * speed;
         var look = m_controls.Player.Look.ReadValue<Vector2>();
 
@@ -110,6 +115,7 @@ public class PlayerMovementController : MonoBehaviour
         if (characterController == null) { characterController = GetComponent<CharacterController>(); }
 
         if (m_animator == null) { m_animator = GetComponentInChildren<Animator>(); }
+        if (torchPointLight == null) { torchPointLight = GetComponentInChildren<Light>(); }
     }
 
 }
