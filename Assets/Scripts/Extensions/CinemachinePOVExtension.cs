@@ -15,12 +15,14 @@ public class CinemachinePOVExtension : CinemachineExtension
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
+        if (!Application.isPlaying) { return; }
         if (vcam.Follow)
         {
             if (stage == CinemachineCore.Stage.Aim)
             {
                 if (startingRotation == null)
                     startingRotation = transform.localRotation.eulerAngles;
+
                 Vector2 deltaInput = player.m_controls.Player.Look.ReadValue<Vector2>();
 
                 startingRotation.x += deltaInput.x * verticalSpeed * Time.deltaTime;

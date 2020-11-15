@@ -95,7 +95,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         var rb = hit.collider.gameObject.GetComponent<Rigidbody>();
-        rb.AddForce((transform.position - hit.collider.transform.position).normalized * 25);
+        if (rb) { rb.AddForce((transform.position - hit.collider.transform.position).normalized * 25); }
     }
 
     private void OnDisable() { m_controls.Disable(); }
