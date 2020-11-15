@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -9,43 +11,76 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     public Camera cachedPlayerCamera = null;
     [SerializeField] Transform groundCheck;
-    public LayerMask groundLayerMask;
+    [SerializeField] Animator m_animator = null;
 
     [Space(5)]
-    [SerializeField] private Main_Input m_controls = null;
+    [HideInInspector] public Main_Input m_controls = null;
 
     [Header("Customizable")]
     [Space(5)]
     [Range(1.1f, 20f)] public float speed = 1.1f;
     [Range(1f, 14f)] public float rotateSpeed = 1;
+
     [Space(5)]
     public Vector3 desiredGravity = new Vector3(0, -9.81f, 0);
+    public LayerMask groundLayerMask;
 
     [Header("Other Debug")]
-    [Space(5)]
+    [Space(10)]
     public bool isGrounded = false;
+    public bool isLeftButtonPressed = false;
     private float xRotation = 0f;
 
-    private void Awake() { m_controls = new Main_Input(); }
+    [Header("Unlockables")]
+    [Space(6.5f)]
+    public bool isTorchUnlocked = false;
+
+    private void Awake()
+    {
+        m_controls = new Main_Input();
+
+        m_controls.Player.Fire.started += OnClickStarted;
+        m_controls.Player.Fire.performed += OnClickPerformed;
+    }
+
+    private void OnClickStarted(InputAction.CallbackContext obj)
+    {
+        if (!isTorchUnlocked) { return; }
+
+        isLeftButtonPressed = true;
+        m_animator.SetBool("IsButtonHeld", isLeftButtonPressed);
+    }
+
+    private void OnClickPerformed(InputAction.CallbackContext ctx)
+    {
+        if (ctx.interaction is SlowTapInteraction)
+        {
+            isLeftButtonPressed = false;
+            m_animator.SetBool("IsButtonHeld", isLeftButtonPressed);
+        }
+
+    }
 
     private void OnEnable() { m_controls.Enable(); }
 
     void Start() { Cursor.lockState = CursorLockMode.Locked; }
 
-    void Update()
+    private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.transform.position, .2f, groundLayerMask);
         var moveDirection = m_controls.Player.Move.ReadValue<Vector2>() * speed;
         var look = m_controls.Player.Look.ReadValue<Vector2>();
 
-        var desiredVelocity = (!isGrounded ? desiredGravity * Time.deltaTime : characterController.velocity.y < 0 ? Vector3.down * 2 : Vector3.zero)
-            + (transform.forward * moveDirection.y + transform.right * moveDirection.x) * Time.deltaTime;
-
-        characterController.Move(desiredVelocity);
+        MoveMethod(moveDirection);
 
         if (look.sqrMagnitude < 0.01)
             return;
 
+        LookMethod(look);
+    }
+
+    private void LookMethod(Vector2 look)
+    {
         xRotation -= look.y * rotateSpeed * Time.deltaTime;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -56,13 +91,25 @@ public class PlayerMovementController : MonoBehaviour
         //cachedPlayerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         cachedPlayerCamera.transform.localRotation = Quaternion.Slerp(cachedPlayerCamera.transform.localRotation, Quaternion.Euler(xRotation, 0, 0),
             Time.deltaTime * 9.5f);
-        Debug.Log(characterController.velocity);
+    }
+
+    private void MoveMethod(Vector2 moveDirection)
+    {
+        var desiredVelocity = (!isGrounded ? desiredGravity * Time.deltaTime : characterController.velocity.y < 0 ? Vector3.down * 2 : Vector3.zero)
+            + (transform.forward * moveDirection.y + transform.right * moveDirection.x) * Time.deltaTime;
+
+        characterController.Move(desiredVelocity);
     }
 
     private void OnDisable() { m_controls.Disable(); }
 
     private void OnDestroy() { m_controls.Dispose(); }
 
-    private void OnValidate() { if (characterController == null) { characterController = GetComponent<CharacterController>(); } }
+    private void OnValidate()
+    {
+        if (characterController == null) { characterController = GetComponent<CharacterController>(); }
+
+        if (m_animator == null) { m_animator = GetComponentInChildren<Animator>(); }
+    }
 
 }
