@@ -538,7 +538,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8485548314393840281}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401795354}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058f071f4f966aa42b0d0bb2de858bbb, type: 3}
@@ -659,25 +659,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &401795354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8485548315219247578, guid: 627066636142e0a43a137b158f01a15b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8485548314393840281}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &401795357
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401795354}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2724857, y: 2.3844981, z: 1.0912094}
-  m_Center: {x: -0.0018897057, y: -0.00024104118, z: 0.010677338}
 --- !u!1 &432605917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,7 +1834,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.1
+  m_fontSize: 22.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1917,6 +1898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementController: {fileID: 199908026}
   textMesh: {fileID: 1048433157}
+  totalCharacters: 0
 --- !u!1 &1081284855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,7 +3512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959119802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: -0.94, z: -13.057342}
+  m_LocalPosition: {x: -27, y: -0.94, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1761507785}
@@ -4137,40 +4119,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5306513001572066408, guid: 0753c64b69751524eb8450e937046a55,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5306513001572066408, guid: 0753c64b69751524eb8450e937046a55,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1e5438adce93bcc498dc6e776dd8a355, type: 2}
-    - target: {fileID: 7205021657281321643, guid: 0753c64b69751524eb8450e937046a55,
-        type: 3}
-      propertyPath: m_Name
-      value: MonsterSprite
-      objectReference: {fileID: 0}
     - target: {fileID: 8331025892966031506, guid: 0753c64b69751524eb8450e937046a55,
         type: 3}
       propertyPath: playerMovementController
       value: 
       objectReference: {fileID: 199908026}
-    - target: {fileID: 8331025892966031507, guid: 0753c64b69751524eb8450e937046a55,
+    - target: {fileID: 8331025892966031506, guid: 0753c64b69751524eb8450e937046a55,
         type: 3}
-      propertyPath: m_Speed
-      value: 4.5
-      objectReference: {fileID: 0}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1234428721}
     - target: {fileID: 8331025892966031509, guid: 0753c64b69751524eb8450e937046a55,
         type: 3}
       propertyPath: m_Name
       value: Dance Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 8331025892966031509, guid: 0753c64b69751524eb8450e937046a55,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8331025892966031518, guid: 0753c64b69751524eb8450e937046a55,
         type: 3}
@@ -4311,10 +4273,5 @@ PrefabInstance:
       propertyPath: torchPointLight
       value: 
       objectReference: {fileID: 5495789303760724650}
-    - target: {fileID: 8485548315219247580, guid: 627066636142e0a43a137b158f01a15b,
-        type: 3}
-      propertyPath: speed
-      value: 6.666
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 627066636142e0a43a137b158f01a15b, type: 3}
