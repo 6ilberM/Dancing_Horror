@@ -36,6 +36,9 @@ public class PlayerMovementController : MonoBehaviour
     [Space(6.5f)]
     public bool isTorchUnlocked = false;
 
+    //Event
+    public Action<bool> onCollectibleOverlap;
+
     private void Awake()
     {
         m_controls = new Main_Input();
@@ -67,7 +70,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnEnable() { m_controls.Enable(); }
 
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -96,6 +99,17 @@ public class PlayerMovementController : MonoBehaviour
     {
         var rb = hit.collider.gameObject.GetComponent<Rigidbody>();
         if (rb) { rb.AddForce((transform.position - hit.collider.transform.position).normalized * 25); }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Collectible"))
+            onCollectibleOverlap?.Invoke(true);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Collectible"))
+            onCollectibleOverlap?.Invoke(false);
     }
 
     private void OnDisable() { m_controls.Disable(); }
