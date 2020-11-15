@@ -3,7 +3,13 @@
 [ExecuteAlways]
 public class AudioManager : MonoBehaviour {
 
+    [SerializeField] private AudioSource wrongNote = null;
+    [SerializeField] private AudioSource clap = null;
+
+    [Space]
     [SerializeField] private AudioSource monsterIntro = null;
+    [SerializeField] private AudioSource monsterRoar = null;
+    [SerializeField] private AudioSource monsterGrowl = null;
     [SerializeField] private AudioSource monsterShortUpL1 = null;
     [SerializeField] private AudioSource monsterShortDownL1 = null;
     [SerializeField] private AudioSource monsterShortLeftL1 = null;
@@ -45,13 +51,21 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource monsterLongTwistL3 = null;
     [SerializeField] private AudioSource monsterLongPoseL3 = null;
 
+    [Space]
+    [SerializeField] private AudioSource playerUp = null;
+    [SerializeField] private AudioSource playerDown = null;
+    [SerializeField] private AudioSource playerLeft = null;
+    [SerializeField] private AudioSource playerRight = null;
+    [SerializeField] private AudioSource playerTwist = null;
+    [SerializeField] private AudioSource playerPose = null;
+
     private static AudioManager instance;
 
-    private static AudioSource[] monsterSfx;
+    private static AudioSource[] allSfx;
 
     void Awake() {
         instance = this;
-        monsterSfx = new AudioSource[] {
+        allSfx = new AudioSource[] {
             monsterShortUpL1,
             monsterShortDownL1,
             monsterShortLeftL1,
@@ -87,9 +101,18 @@ public class AudioManager : MonoBehaviour {
             monsterLongLeftL3,
             monsterLongRightL3,
             monsterLongTwistL3,
-            monsterLongPoseL3
+            monsterLongPoseL3,
+            playerUp,
+            playerDown,
+            playerLeft,
+            playerRight,
+            playerTwist,
+            playerPose,
         };
     }
+
+    public static void PlayWrongNoteSound() => instance.wrongNote.Play();
+    public static void PlayClapSound() => instance.clap.Play();
 
     public static void PlayMonsterShortUpSoundL1() => instance.monsterShortUpL1.Play();
     public static void PlayMonsterShortDownSoundL1() => instance.monsterShortDownL1.Play();
@@ -105,9 +128,18 @@ public class AudioManager : MonoBehaviour {
     public static void PlayMonsterLongTwistSoundL1() => instance.monsterLongTwistL1.Play();
     public static void PlayMonsterLongPoseSoundL1() => instance.monsterLongPoseL1.Play();
     public static void PlayMonsterIntro() => instance.monsterIntro.Play();
+    public static void PlayMonsterRoar() => instance.monsterRoar.Play();
+    public static void PlayMonsterGrowl() => instance.monsterGrowl.Play();
 
-    public static void StopMonsterSfx() {
-        foreach (var sfx in monsterSfx) {
+    public static void PlayPlayerUpSound() => instance.playerUp.Play();
+    public static void PlayPlayerDownSound() => instance.playerDown.Play();
+    public static void PlayPlayerLeftSound() => instance.playerLeft.Play();
+    public static void PlayPlayerRightSound() => instance.playerRight.Play();
+    public static void PlayPlayerTwistSound() => instance.playerTwist.Play();
+    public static void PlayPlayerPoseSound() => instance.playerPose.Play();
+
+    public static void StopSfx() {
+        foreach (var sfx in allSfx) {
             sfx.Stop();
         }
     }

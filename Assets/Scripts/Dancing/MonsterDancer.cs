@@ -10,10 +10,6 @@ public class MonsterDancer : MonoBehaviour {
 
     private int difficultyCounter = 1;
 
-    //private void Start() {
-    //    Time.timeScale = 1.05f;
-    //}
-
     public void PlayIntro() {
         if (!playedIntro) {
             AudioManager.PlayMonsterIntro();
@@ -21,9 +17,13 @@ public class MonsterDancer : MonoBehaviour {
         }
     }
 
+    public void ResetDanceSequence() {
+        danceSequenceIndex = 1;
+    }
+
     public void SetupDanceSequence() {
         // TODO: Choose a dance sequence difficulty and determine if 
-        danceSequenceIndex = 1;
+        ResetDanceSequence();
         switch (difficultyCounter++) {
             case 1: danceMoveSequence = DanceSequencePresets.GetDanceSequence(
                     DanceSequenceDifficulty.EASY); break;
@@ -76,45 +76,70 @@ public class MonsterDancer : MonoBehaviour {
         return danceMoveSequence.GetMoveFromIndex(index + 1) == DanceType.NONE;
     }
 
-    public void HitUpMove(bool shortSound) {
+    public void HitUpMove(bool shortSound, bool soundOn = true) {
         enemyAnimator.SetTrigger("Up");
-        AudioManager.StopMonsterSfx();
-        if (shortSound) { AudioManager.PlayMonsterShortUpSoundL1(); } 
-        else {            AudioManager.PlayMonsterLongUpSoundL1();  }
+        if (soundOn) {
+            AudioManager.StopSfx();
+            if (shortSound) { AudioManager.PlayMonsterShortUpSoundL1(); } 
+            else { AudioManager.PlayMonsterLongUpSoundL1(); }
+        }
     }
 
-    public void HitDownMove(bool shortSound) {
+    public void HitDownMove(bool shortSound, bool soundOn = true) {
         enemyAnimator.SetTrigger("Down");
-        AudioManager.StopMonsterSfx();
-        if (shortSound) { AudioManager.PlayMonsterShortDownSoundL1(); } 
-        else { AudioManager.PlayMonsterLongDownSoundL1(); }
+        if (soundOn) {
+            AudioManager.StopSfx();
+            if (shortSound) { AudioManager.PlayMonsterShortDownSoundL1(); } 
+            else { AudioManager.PlayMonsterLongDownSoundL1(); }
+        }
     }
 
-    public void HitLeftMove(bool shortSound) {
+    public void HitLeftMove(bool shortSound, bool soundOn = true) {
         enemyAnimator.SetTrigger("Left");
-        AudioManager.StopMonsterSfx();
-        if (shortSound) { AudioManager.PlayMonsterShortLeftSoundL1(); } 
-        else { AudioManager.PlayMonsterLongLeftSoundL1(); }
+        if (soundOn) {
+            AudioManager.StopSfx();
+            if (shortSound) { AudioManager.PlayMonsterShortLeftSoundL1(); } 
+            else { AudioManager.PlayMonsterLongLeftSoundL1(); }
+        }
     }
 
-    public void HitRightMove(bool shortSound) {
+    public void HitRightMove(bool shortSound, bool soundOn = true) {
         enemyAnimator.SetTrigger("Right");
-        AudioManager.StopMonsterSfx();
-        if (shortSound) { AudioManager.PlayMonsterShortRightSoundL1(); } 
-        else { AudioManager.PlayMonsterLongRightSoundL1(); }
+        if (soundOn) {
+            AudioManager.StopSfx();
+            if (shortSound) { AudioManager.PlayMonsterShortRightSoundL1(); } 
+            else { AudioManager.PlayMonsterLongRightSoundL1(); }
+        }
     }
 
-    public void HitTwistMove(bool shortSound) {
+    public void HitTwistMove(bool shortSound, bool soundOn = true) {
         enemyAnimator.SetTrigger("Twist");
-        AudioManager.StopMonsterSfx();
-        if (shortSound) { AudioManager.PlayMonsterShortTwistSoundL1(); } 
-        else { AudioManager.PlayMonsterLongTwistSoundL1(); }
+        if (soundOn) {
+            AudioManager.StopSfx();
+            if (shortSound) { AudioManager.PlayMonsterShortTwistSoundL1(); } 
+            else { AudioManager.PlayMonsterLongTwistSoundL1(); }
+        }
     }
 
-    public void HitPoseMove(bool shortSound) {
+    public void HitPoseMove(bool shortSound, bool soundOn = true) {
         enemyAnimator.SetTrigger("Pose");
-        AudioManager.StopMonsterSfx();
-        if (shortSound) { AudioManager.PlayMonsterShortPoseSoundL1(); } 
-        else { AudioManager.PlayMonsterLongPoseSoundL1(); }
+        if (soundOn) {
+            AudioManager.StopSfx();
+            if (shortSound) { AudioManager.PlayMonsterShortPoseSoundL1(); } else { AudioManager.PlayMonsterLongPoseSoundL1(); }
+        }
+    }
+
+    public void Roar(bool soundOn = true) {
+        enemyAnimator.SetTrigger("Roar");
+        if (soundOn) {
+            AudioManager.PlayMonsterRoar();
+        }
+    }
+
+    public void Growl(bool soundOn = true) {
+        enemyAnimator.SetTrigger("Roar");
+        if (soundOn) {
+            AudioManager.PlayMonsterGrowl();
+        }
     }
 }
