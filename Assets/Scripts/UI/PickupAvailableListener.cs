@@ -6,8 +6,8 @@ using UnityEngine;
 public class PickupAvailableListener : MonoBehaviour
 {
     [SerializeField] PlayerMovementController playerMovementController = null;
-    [SerializeField] TMPro.TextMeshProUGUI textMesh;
-    [SerializeField] private int totalCharacters = 0;
+    [SerializeField] TMPro.TextMeshProUGUI textMesh = null;
+    //[SerializeField] private int totalCharacters = 0;
 
 
     private void Awake()

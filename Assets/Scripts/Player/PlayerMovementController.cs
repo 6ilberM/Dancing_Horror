@@ -10,7 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     [Space(5)]
     [SerializeField] private CharacterController characterController;
     public Camera cachedPlayerCamera = null;
-    [SerializeField] Transform groundCheck;
+    [SerializeField] Transform groundCheck = null;
     [SerializeField] Animator m_animator = null;
     [SerializeField] Light torchPointLight = null;
 

@@ -45,9 +45,6 @@ public class PlayerDancer : MonoBehaviour {
     private int danceKeyAppearIndex = 0;
     private int danceKeyHitIndex = 1;
 
-    private int maxMissCount = 5;
-    private int totalMissCount = 0;
-
     private bool isPlayerTurn = false;
 
     public void SetupDanceKeyGroup(DanceSequence danceSequence) {
